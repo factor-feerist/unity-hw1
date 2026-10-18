@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "GameInputActions",
+    "maps": [
+        {
+            "name": "Game",
+            "id": "62a26adb-9d1f-4f21-b561-ee188386029a",
+            "actions": [
+                {
+                    "name": "Roll",
+                    "type": "Button",
+                    "id": "ab868692-3856-4ab3-8afa-1e9a8ff2b517",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RebindRollKey",
+                    "type": "Button",
+                    "id": "ac667390-a602-4685-a335-458ab0554ba5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "254ece1e-2b64-4940-9742-121973d3d572",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6d4a957-e357-4c6e-abfb-879490a7c381",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RebindRollKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
