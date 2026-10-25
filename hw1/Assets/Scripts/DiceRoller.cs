@@ -9,10 +9,9 @@ public class DiceRoller : MonoBehaviour
     private const float Radius = 5;
     private const int ForceMultiplier = 50;
 
-    [SerializeField] [Range(1, 6)] private int dieCount = 3;
+    [SerializeField] private DiceGameModel diceGameModel;
 
-    [SerializeField] private Rigidbody diePrefab;
-
+    private Rigidbody _diePrefab;
     private Rigidbody[] _dice;
     private bool _isRolling;
 
@@ -26,23 +25,11 @@ public class DiceRoller : MonoBehaviour
         (x => -x.transform.forward, 6)
     };
 
-    private void Awake()
-    {
-        _dice = new Rigidbody[dieCount];
-
-        var initialAngle = 2 * Mathf.PI / dieCount;
-        for (var i = 0; i < dieCount; i++)
-        {
-            var die = Instantiate(diePrefab, transform);
-            var angle = initialAngle * i;
-            die.transform.localPosition = new Vector3(Radius * Mathf.Cos(angle), 0, Radius * Mathf.Sin(angle));
-
-            _dice[i] = die;
-        }
-    }
-
     private void Update()
     {
+        if (_dice == null || _dice.Length == 0)
+            return;
+
         var isRolling = _dice.Any(x
             => x.linearVelocity.sqrMagnitude > Tolerance
                || x.angularVelocity.sqrMagnitude > Tolerance);
@@ -56,7 +43,31 @@ public class DiceRoller : MonoBehaviour
         _isRolling = isRolling;
     }
 
-    private void OnRoll()
+    public void SetupDice(Rigidbody diePrefab, int dieCount)
+    {
+        _diePrefab = diePrefab;
+
+        if (_dice != null)
+        {
+            foreach (var die in _dice)
+                if (die != null)
+                    Destroy(die.gameObject);
+        }
+
+        _dice = new Rigidbody[dieCount];
+
+        var initialAngle = 2 * Mathf.PI / dieCount;
+        for (var i = 0; i < dieCount; i++)
+        {
+            var die = Instantiate(_diePrefab, transform);
+            var angle = initialAngle * i;
+            die.transform.localPosition = new Vector3(Radius * Mathf.Cos(angle), 0, Radius * Mathf.Sin(angle));
+
+            _dice[i] = die;
+        }
+    }
+
+    public void OnRoll()
     {
         if (_isRolling)
             return;
@@ -94,6 +105,6 @@ public class DiceRoller : MonoBehaviour
             totalScore += score;
         }
 
-        Debug.Log($"Очки: {totalScore}");
+        diceGameModel.SetCurrentScore(totalScore);
     }
 }

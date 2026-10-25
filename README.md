@@ -14,3 +14,9 @@
 Ветка: Lecture3СычЭрнестЕвгеньевич
 
 [Ссылка на видео](https://drive.google.com/file/d/1nGg2IlKcCLlMuePlh25o1u8rxXM5P6aI/view?usp=sharing)
+
+
+## Homework 4
+Ветка: Lecture4СычЭрнестЕвгеньевич
+
+[Ссылка на видео](https://drive.google.com/file/d/1rkPBhvaWFxJttHLL9DlLp3dnlh7TC7_J/view?usp=sharing)
